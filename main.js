@@ -42,13 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const element = entry.target;
       const target = Number(element.getAttribute("data-count"));
+      const suffix = element.getAttribute("data-suffix") || "";
       const duration = 1500;
       let startTime = null;
 
       function animate(timestamp) {
         if (!startTime) startTime = timestamp;
         const progress = Math.min((timestamp - startTime) / duration, 1);
-        element.textContent = Math.floor(progress * target).toLocaleString();
+        element.textContent = Math.floor(progress * target).toLocaleString() + suffix;
         if (progress < 1) requestAnimationFrame(animate);
       }
 
